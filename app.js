@@ -38,7 +38,13 @@ app.get('/visit', function (req, res) {
   var db = req.db;
   var collection = db.get('col');
   var referrer = req.header('referrer');
-  mreferrer.referrer.parse(req.url, referrer, function (err, desc) {
+  var url = req.url;
+
+  // uncomment these two variable assignment for testing with different link referee.
+  // url = "http://www.newyorker.com/online/blogs/johncassidy/2012/08/economy-points-to-dead-heat-in-november.html?mbid=gnep&google_editors_picks=true";
+  // referrer = "http://twitter.com/elonmusk";
+
+  mreferrer.referrer.parse(url, referrer, function (err, desc) {
     req.referrer = desc;
     let src = desc.referrer.type;
     //find if the name exists and inc by 1, if not create one
